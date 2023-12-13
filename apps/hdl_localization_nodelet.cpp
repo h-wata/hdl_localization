@@ -21,6 +21,7 @@
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 
 #include <pcl/filters/voxel_grid.h>
+#include <pcl/filters/approximate_voxel_grid.h>
 
 #include <pclomp/ndt_omp.h>
 #include <fast_gicp/ndt/ndt_cuda.hpp>
@@ -143,7 +144,7 @@ private:
   void initialize_params() {
     // intialize scan matching method
     double downsample_resolution = private_nh.param<double>("downsample_resolution", 0.1);
-    boost::shared_ptr<pcl::VoxelGrid<PointT>> voxelgrid(new pcl::VoxelGrid<PointT>());
+    boost::shared_ptr<pcl::ApproximateVoxelGrid<PointT>> voxelgrid(new pcl::ApproximateVoxelGrid<PointT>());
     voxelgrid->setLeafSize(downsample_resolution, downsample_resolution, downsample_resolution);
     downsample_filter = voxelgrid;
 

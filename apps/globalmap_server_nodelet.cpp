@@ -13,6 +13,7 @@
 #include <pluginlib/class_list_macros.h>
 
 #include <pcl/filters/voxel_grid.h>
+#include <pcl/filters/approximate_voxel_grid.h>
 
 namespace hdl_localization {
 
@@ -62,7 +63,7 @@ private:
 
     // downsample globalmap
     double downsample_resolution = private_nh.param<double>("downsample_resolution", 0.1);
-    boost::shared_ptr<pcl::VoxelGrid<PointT>> voxelgrid(new pcl::VoxelGrid<PointT>());
+    boost::shared_ptr<pcl::ApproximateVoxelGrid<PointT>> voxelgrid(new pcl::ApproximateVoxelGrid<PointT>());
     voxelgrid->setLeafSize(downsample_resolution, downsample_resolution, downsample_resolution);
     voxelgrid->setInputCloud(globalmap);
 
